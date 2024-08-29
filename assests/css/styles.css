@@ -1,0 +1,36 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+#sidebar {
+    background-color: #f8f9fa;
+    padding: 15px;
+}
+
+#sidebar .nav-link {
+    font-size: 16px;
+}
+
+#sidebar .nav-link.active {
+    background-color: #e9ecef;
+}
+
+.table th,
+.table td {
+    text-align: center;
+}
+
+.table th {
+    background-color: #f1f1f1;
+}
