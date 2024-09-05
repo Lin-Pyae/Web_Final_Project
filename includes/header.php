@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Registration</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="assests/css/styles.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -18,10 +18,10 @@
                 </li>
             <?php else: ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="/LAP3/Final%20Project/auth/login.php">Login</a>
+                    <a class="nav-link" href="auth/login.php">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/LAP3/Final%20Project/auth/register.php">Register</a>
+                    <a class="nav-link" href="auth/register.php">Register</a>
                 </li>
             <?php endif; ?>
         </ul>
