@@ -1,11 +1,11 @@
 body {
-    padding-top: 60px; /* Space for fixed navbar */
-    padding-bottom: 60px; /* Space for footer */
+    padding-top: 60px; 
+    padding-bottom: 60px; 
     text-align: center;
 }
 
 .navbar {
-    background-color: #2c3e50; /* Darker background */
+    background-color: #2c3e50; 
 }
 
 .navbar-brand, .nav-link {
@@ -13,7 +13,7 @@ body {
 }
 
 footer  {
-    background-color: #899499; /* Dark gray background */
+    background-color: #899499; 
     color: rgb(0, 0, 0);
     text-align: center;
     padding: 10px 0;
