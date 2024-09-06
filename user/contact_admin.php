@@ -23,20 +23,80 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+<style>
+   
+.contact-box {
+    background-color: #D3D3D3;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);  
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
 
-<div class="container">
-    <h2>Contact Admin</h2>
-    <form action="contact_admin.php" method="POST">
-        <div class="form-group">
-            <label for="subject">Subject</label>
-            <input type="text" class="form-control" id="subject" name="subject" required>
-        </div>
-        <div class="form-group">
-            <label for="message">Message</label>
-            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Send Message</button>
-    </form>
+
+h2 {
+    font-size: 28px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+
+.contact-box .form-control {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+
+.contact-box .form-control.shadow-sm {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.contact-box .btn-primary {
+    background-color: #337af4;
+    color: white;
+    padding: 8px 16px; 
+    font-size: 16px; 
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3); 
+    width: auto; 
+}
+
+
+.contact-box .btn-primary:hover {
+    background-color: #84b0c5;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4); 
+}
+
+
+@media (max-width: 768px) {
+    .contact-box {
+        width: 90%;
+        padding: 15px;
+    }
+}
+
+</style>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Contact Admin</h2>
+    <div class="contact-box p-4">
+        <form action="contact_admin.php" method="POST">
+            <div class="form-group mb-4">
+                <label for="subject">Subject</label>
+                <input type="text" class="form-control shadow-sm" id="subject" name="subject" required>
+            </div>
+            <div class="form-group mb-4">
+                <label for="message">Message</label>
+                <textarea class="form-control shadow-sm" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary shadow">Send Message</button>
+        </form>
+    </div>
 </div>
+
 
 <?php include('../includes/footer.php'); ?>
