@@ -123,7 +123,7 @@ h3 {
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar toggle button for small screens -->
-            <div class="sidebar-toggle">Toggle Sidebar</div>
+            <div class="sidebar-toggle">☰ Menu</div>
 
             <!-- Sidebar -->
             <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
@@ -147,7 +147,7 @@ h3 {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="view_courses.php">
-                                <i class="bi bi-envelope"></i> View courses
+                                <i class="bi bi-envelope"></i> View Courses
                             </a>
                         </li>
                     </ul>
