@@ -38,11 +38,11 @@
         <ul class="navbar-nav ml-auto">
             <?php if(isset($_SESSION['user_id'])): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="/LAP3/Final%20Project/auth/logout.php">Logout</a>
+                    <a class="nav-link" href="../auth/logout.php">Logout</a>
                 </li>
             <?php else: ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="/LAP3/Final%20Project/auth/login.php">Logout</a>
+                    <a class="nav-link" href="../auth/login.php">Logout</a>
                 </li>
             <?php endif; ?>
         </ul>

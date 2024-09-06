@@ -3,7 +3,7 @@
 $host = 'localhost';
 $dbname = 'student_registration';
 $user = 'root';
-$pass = '12345';
+$pass = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
