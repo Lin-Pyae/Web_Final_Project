@@ -12,7 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
+        
         if ($user['is_active']) { // Check if the user is active
+            var_dump(password_verify($password, $user['password']));
             if (password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['role_id'] = $user['role_id'];
