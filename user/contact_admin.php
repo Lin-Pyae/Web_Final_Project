@@ -176,11 +176,11 @@ h2 {
                                 <i class="bi bi-envelope"></i> Contact Admin
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="view_courses.php">
                                 <i class="bi bi-book"></i> View Courses
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </nav>

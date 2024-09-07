@@ -36,7 +36,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-            <?php if(isset($_SESSION['user_id'])): ?>
+            <!-- Check if the user is logged in by checking the session -->
+            <?php if (isset($_SESSION['user_id'])): ?>
                 <li class="nav-item">
                     <a class="nav-link" href="../auth/logout.php">Logout</a>
                 </li>
@@ -48,4 +49,5 @@
         </ul>
     </div>
 </nav>
+
 <div class="container mt-4">

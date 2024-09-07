@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="assests/css/index.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <!-- <nav class="navbar navbar-expand-lg fixed-top">
         <a class="navbar-brand" href="#">Student Registration</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
@@ -26,7 +26,7 @@
                 <?php endif; ?>
             </ul>
         </div>
-    </nav>
+    </nav> -->
 
     <div class="container mt-4 content">
         <img src="assests/img/MIT-removebg-preview.png" alt="MIT">

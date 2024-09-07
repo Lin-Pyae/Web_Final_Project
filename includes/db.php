@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root"; // your database username
-$password = ""; // your database password
+$password = "12345"; // your database password
 $dbname = "student_registration";
 
 // Create connection
