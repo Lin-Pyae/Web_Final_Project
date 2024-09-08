@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['major_id']) && isset(
     $check_result = $conn->query($check_sql);
     
     if ($check_result->num_rows == 0) {
-        // Register the user for the major
+        // Register the user for the major if not already registered
         $register_sql = "INSERT INTO registrations (user_id, major_id, year) VALUES ($user_id, $major_id, $year)";
         if ($conn->query($register_sql) === TRUE) {
             // Registration successful, redirect to the user dashboard
@@ -31,7 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['major_id']) && isset(
             $message = "Error: " . $conn->error;
         }
     } else {
-        $message = "You are already registered for a major.";
+        // Update the year if the user is already registered
+        $update_sql = "UPDATE registrations SET year = $year WHERE user_id = $user_id AND major_id = $major_id";
+        if ($conn->query($update_sql) === TRUE) {
+            $message = "Year updated successfully.";
+            header("Location: user_dashboard.php");
+            exit();
+        } else {
+            $message = "Error updating year: " . $conn->error;
+        }
     }
 }
 
