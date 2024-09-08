@@ -73,6 +73,9 @@ $result = $conn->query($sql);
                             <a class="nav-link active" href="view_messages.php">
                                 <i class="fas fa-envelope"></i> View Messages
                             </a>
+                            <a class="nav-link" href="manage_majors.php">
+                                <i class="fas fa-book"></i> Manage Majors
+                            </a>
                         </li>
                     </ul>
                 </div>

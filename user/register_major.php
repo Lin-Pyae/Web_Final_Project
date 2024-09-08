@@ -11,17 +11,33 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role_id'] != 2) {
 
 $user_id = $_SESSION['user_id'];
 
-// Fetch user information
-$sql = "SELECT * FROM users WHERE id = $user_id";
-$result = $conn->query($sql);
-$user = $result->fetch_assoc();
+// Handle major registration form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['major_id']) && isset($_POST['year'])) {
+    $major_id = $_POST['major_id'];
+    $year = $_POST['year'];
 
-// Fetch major registration information
-$sql = "SELECT majors.major_name, registrations.year FROM registrations 
-        JOIN majors ON registrations.major_id = majors.id 
-        WHERE registrations.user_id = $user_id";
-$major_result = $conn->query($sql);
-$major = $major_result->fetch_assoc();
+    // Check if the user is already registered for a major
+    $check_sql = "SELECT * FROM registrations WHERE user_id = $user_id";
+    $check_result = $conn->query($check_sql);
+    
+    if ($check_result->num_rows == 0) {
+        // Register the user for the major
+        $register_sql = "INSERT INTO registrations (user_id, major_id, year) VALUES ($user_id, $major_id, $year)";
+        if ($conn->query($register_sql) === TRUE) {
+            // Registration successful, redirect to the user dashboard
+            header("Location: user_dashboard.php");
+            exit();
+        } else {
+            $message = "Error: " . $conn->error;
+        }
+    } else {
+        $message = "You are already registered for a major.";
+    }
+}
+
+// Fetch available majors
+$sql = "SELECT * FROM majors";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +45,7 @@ $major = $major_result->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
+    <title>Register Major</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
@@ -84,11 +100,8 @@ $major = $major_result->fetch_assoc();
             margin-top: 20px;
         }
 
-        .profile-info {
-            background-color: #D3D3D3;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px var(--shadow-color);
-            padding: 20px;
+        .form-group {
+            margin-bottom: 1.5rem;
         }
 
         .sidebar-toggle {
@@ -134,7 +147,7 @@ $major = $major_result->fetch_assoc();
                     <h4 class="mt-3">User Panel</h4>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="user_dashboard.php">
+                            <a class="nav-link" href="user_dashboard.php">
                                 <i class="bi bi-house-door"></i> Dashboard
                             </a>
                         </li>
@@ -149,7 +162,7 @@ $major = $major_result->fetch_assoc();
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="register_major.php">
+                            <a class="nav-link active" href="register_major.php">
                                 <i class="bi bi-book"></i> Register Major
                             </a>
                         </li>
@@ -160,29 +173,29 @@ $major = $major_result->fetch_assoc();
             <!-- Main Content -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Welcome, <?php echo htmlspecialchars($user['username']); ?>!</h1>
+                    <h1 class="h2">Register for a Major</h1>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6 profile-info">
-                        <h3>Profile Information</h3>
-                        <p><strong>Username:</strong> <?php echo htmlspecialchars($user['username']); ?></p>
-                        <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
-                    </div>
-                </div>
+                <?php if (isset($message)) { ?>
+                    <div class="alert alert-info"><?php echo $message; ?></div>
+                <?php } ?>
 
-                <!-- Display Registered Major -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>Registered Major</h3>
-                        <?php if ($major) { ?>
-                            <p><strong>Major:</strong> <?php echo htmlspecialchars($major['major_name']); ?></p>
-                            <p><strong>Year:</strong> <?php echo htmlspecialchars($major['year']); ?></p>
-                        <?php } else { ?>
-                            <p>You have not registered for a major yet.</p>
-                        <?php } ?>
+                <form action="register_major.php" method="post">
+                    <div class="form-group">
+                        <label for="major_id">Select a Major:</label>
+                        <select name="major_id" id="major_id" class="form-control" required>
+                            <?php while ($row = $result->fetch_assoc()) { ?>
+                                <option value="<?php echo $row['id']; ?>"><?php echo $row['major_name']; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="year">Year:</label>
+                        <input type="number" name="year" id="year" class="form-control" min="1" max="4" required>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
             </main>
         </div>
     </div>

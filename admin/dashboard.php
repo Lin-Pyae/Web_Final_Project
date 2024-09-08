@@ -19,6 +19,10 @@ if ($filter === 'this_week') {
     $sql = "SELECT * FROM users";
 }
 $result = $conn->query($sql);
+
+// Fetch major data
+$major_sql = "SELECT * FROM majors";
+$major_result = $conn->query($major_sql);
 ?>
 
 <!DOCTYPE html>
@@ -71,15 +75,16 @@ $result = $conn->query($sql);
                     <h4 class="mt-3 text-center">Admin Panel</h4>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="dashboard.php">
+                            <a class="nav-link active" href="admin_dashboard.php">
                                 <i class="fas fa-home"></i> Dashboard
                             </a>
-                            <a class="nav-link active" href="view_messages.php">
+                            <a class="nav-link" href="view_messages.php">
                                 <i class="fas fa-envelope"></i> View Messages
                             </a>
+                            <a class="nav-link" href="manage_majors.php">
+                                <i class="fas fa-book"></i> Manage Majors
+                            </a>
                         </li>
-            
-                        <!-- Add more navigation items here -->
                     </ul>
                 </div>
             </nav>
